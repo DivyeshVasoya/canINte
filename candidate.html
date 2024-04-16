@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submit Form Data to Salesforce</title>
+  </head>
+  <body>
+    <h1>Submit Form Data to Salesforce</h1>
+    <form id="salesforceForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required /><br /><br />
+      <br /><br />
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      document
+        .getElementById("salesforceForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const formData = new FormData(this);
+          const data = {};
+          formData.forEach((value, key) => {
+            data[key] = value;
+          });
+
+          const accessToken =
+            "00D5g00000LOawI!ARsAQLs281YG64lA.CtPOJJXNtT.1qcOnEVcCminpwBCMi9YL.4e1xogUSCPmyUSjMG5FAZBTBxmL9i.a_dmaChJwUHLJL3c"; // Replace with your access token
+
+          fetch(
+            "https://kriittechnologies2-dev-ed.develop.my.salesforce.com/services/apexrest/MyApexRestClass/submitCandidateData",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${accessToken}`,
+              },
+              body: JSON.stringify(data),
+            }
+          )
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.json();
+            })
+            .then((data) => {
+              console.log("Form data submitted successfully:", data);
+              alert("Form data submitted successfully!");
+            })
+            .catch((error) => {
+              console.error("There was a problem with the request:", error);
+              alert("There was a problem submitting the form data.");
+            });
+        });
+    </script>
+  </body>
+</html>

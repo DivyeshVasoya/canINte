@@ -77,16 +77,20 @@
             .then(data => {
                 const dropdown = document.getElementById('recordDropdown');
                 data.forEach(record => {
-                    const option = document.createElement('option');
-                    option.value = record.Id;
-                    option.textContent = record.Name;
-                  if(record.Status__c=="Open - Approved"){
-                      dropdown.appendChild(option);
-                  }
                     
-                    console.log("Retrived Data",data);
-                  
+                  if(record.Status__c=="Open - Approved"){
+                      const option = document.createElement('option');
+                      option.value = record.Id;
+                      option.textContent = record.Name;
+                      dropdown.appendChild(option);
+                      console.log("Valid Status is ",record.Status__c);
+                  }else{
+                    console.log("Not Valid for Post");
+                  }
+                                 
                 });
+              console.log("Retrived Data",data);
+              console.log();
             })
             .catch(error => {
                 console.error('Error fetching data from Salesforce:', error);

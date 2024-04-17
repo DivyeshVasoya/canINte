@@ -31,7 +31,7 @@
             data[key] = value;
           });
           const dropdown = document.getElementById("recordDropdown");
-          const selectedRecordId = dropdown.options[dropdown.selectedIndex].id;
+          const selectedRecordId = dropdown.options[dropdown.selectedIndex].value;
            data["selectedRecordId"] = selectedRecordId;
           console.log("This is actual data",data);
 

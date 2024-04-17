@@ -64,28 +64,49 @@ Aesthetics
 * {
   box-sizing: border-box;
 }
+      .button {
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button4 {
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+}
+  .f{
+    font-family: "Lucida Console", monospace;
+
+  }
 </style>
   </head>
   <body>
     <h1>Apply For Job Now !</h1>
     <form id="salesforceForm">
-      <label for="fname">First Name:</label>
+      <label for="fname" class="f">First Name:</label>
       <input type="text" id="fname" name="firstName" required /><br /><br />
-      <label for="lname">Last Name:</label>
+      <label for="lname" class="f">Last Name:</label>
       <input type="text" id="lname" name="lastName" required /><br /><br />
-      <label for="email">Email:</label>
+      <label for="email" class="f">Email:</label>
       <input type="email" id="email" name="email" required /><br /><br />
 
 
       
-      <label for="position">Position:</label>
+      <label for="position" class="f">Position:</label>
       <div class="custom-select">
       <select id="recordDropdown">
         <!-- Dropdown options will be populated dynamically -->
       </select>
       </div>
       <br /><br />
-      <button type="submit">Submit</button>
+      <button class="button4" type="submit">Submit</button>
     </form>
 
     <script>

@@ -69,7 +69,7 @@
                     'Authorization': 'Bearer 00D5g00000LOawI!ARsAQFG9ByPZHjWv2R1NchSKT0nra0Xpak0oZx7sRMuKju9GRxYi8BacRXN7jzyjXuM.Lt1cfY1sRwGoXdZwzTQMeQ6K.K1i'
                 }
             })
-            .then(response => response.text())
+            .then(response => response.json())
             .then(data => {
                 const dropdown = document.getElementById('recordDropdown');
                 data.forEach(record => {

@@ -30,6 +30,9 @@
           formData.forEach((value, key) => {
             data[key] = value;
           });
+          const dropdown = document.getElementById("recordDropdown");
+          const selectedRecordId = document.getElementById("recordDropdown").value;
+           data["selectedRecordId"] = selectedRecordId;
 
           const accessToken =
             "00D5g00000LOawI!ARsAQFG9ByPZHjWv2R1NchSKT0nra0Xpak0oZx7sRMuKju9GRxYi8BacRXN7jzyjXuM.Lt1cfY1sRwGoXdZwzTQMeQ6K.K1i"; // Replace with your access token

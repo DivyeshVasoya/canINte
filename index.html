@@ -72,7 +72,7 @@
             .then(response => response.json())
             .then(data => {
                 const dropdown = document.getElementById('recordDropdown');
-                data.records.forEach(record => {
+                data.forEach(record => {
                     const option = document.createElement('option');
                     option.value = record.Id;
                     option.textContent = record.Name;

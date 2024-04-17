@@ -12,6 +12,9 @@
       <input type="text" id="fname" name="firstName" required /><br /><br />
       <label for="lname">Last Name:</label>
       <input type="text" id="lname" name="lastName" required /><br /><br />
+      <select id="recordDropdown">
+        <!-- Dropdown options will be populated dynamically -->
+      </select>
       <br /><br />
       <button type="submit">Submit</button>
     </form>
@@ -29,7 +32,7 @@
           });
 
           const accessToken =
-            "00D5g00000LOawI!ARsAQHMBseX1mY_rIJxU4Jln7LezO2FSLABWQCb_Hkt0YBZ6u7guX6Q158flV.C2UfihCZPaAUJZAH999jJww5cENf3vCQ4l"; // Replace with your access token
+            "00D5g00000LOawI!ARsAQFG9ByPZHjWv2R1NchSKT0nra0Xpak0oZx7sRMuKju9GRxYi8BacRXN7jzyjXuM.Lt1cfY1sRwGoXdZwzTQMeQ6K.K1i"; // Replace with your access token
 
           fetch(
             "https://kriittechnologies2-dev-ed.develop.my.salesforce.com/services/apexrest/submitCandidateData",
@@ -57,6 +60,32 @@
               alert("There was a problem submitting the form data.");
             });
         });
+
+      
+      function populateDropdown() {
+            fetch('https://kriittechnologies2-dev-ed.develop.my.salesforce.com/services/apexrest/submitCandidateData', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const dropdown = document.getElementById('recordDropdown');
+                data.records.forEach(record => {
+                    const option = document.createElement('option');
+                    option.value = record.Id;
+                    option.textContent = record.Name;
+                    dropdown.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data from Salesforce:', error);
+            });
+        }
+
+        // Call the function to populate the dropdown when the page loads
+        populateDropdown();
     </script>
   </body>
 </html>

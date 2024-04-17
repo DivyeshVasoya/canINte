@@ -31,7 +31,7 @@
             data[key] = value;
           });
           const dropdown = document.getElementById("recordDropdown");
-          const selectedRecordId = document.getElementById("recordDropdown").value;
+          const selectedRecordId = dropdown.options[dropdown.selectedIndex].id;
            data["selectedRecordId"] = selectedRecordId;
 
           const accessToken =

@@ -83,16 +83,20 @@
               //console.log("Form data submitted successfully:", result);
                 var email=document.getElementById("email").value;
                 var password=document.getElementById("password").value;
-                
+                let match=false;
                 result.forEach(record=>{
                     if(record.Email__c==email && record.Password__c==password){
-                        window.location.href = "/canINte/home.html";
-                        break;
-                    }else{
-                        alert("email address and passsword does not match");
-                        break;
+                        match=true;
+                         window.location.href = "/canINte/home.html";
+                        return;
+                       
                     }
                 });
+
+                if(!match){
+                   alert("Email Address and Password Does Not Match !");
+                }
+                    
               //alert("Form data submitted successfully!");
                 
             })

@@ -87,8 +87,10 @@
                 result.forEach(record=>{
                     if(record.Email__c==email && record.Password__c==password){
                         window.location.href = "/canINte/home.html";
+                        break;
                     }else{
                         alert("email address and passsword does not match");
+                        break;
                     }
                 });
               //alert("Form data submitted successfully!");

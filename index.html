@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
     <style>
-        body {
+       body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             padding: 20px;
@@ -22,12 +22,19 @@
         input[type="email"],
         input[type="password"],
         select {
-            width: 100%;
+            width: calc(100% - 22px);
             padding: 10px;
             margin: 5px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        select:focus {
+            border-color: #4CAF50;
         }
         input[type="submit"] {
             background-color: #4CAF50;
@@ -38,11 +45,12 @@
             cursor: pointer;
             width: 100%;
             font-size: 16px;
+            transition: background-color 0.3s;
         }
         input[type="submit"]:hover {
             background-color: #45a049;
         }
-         .login-link {
+        .login-link {
             text-align: center;
             margin-top: 10px;
         }

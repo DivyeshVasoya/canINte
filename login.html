@@ -78,21 +78,19 @@
                 Authorization: `Bearer ${accessToken}`,
               }
             })
-            .then((response) => {
-                              
-              return response.text();
-            })
-            .then((result) => {
+            .then(response => response.json())
+            .then(result => {
               //console.log("Form data submitted successfully:", result);
                 var email=document.getElementById("email").value;
                 var password=document.getElementById("password").value;
+                
                 result.forEach(record=>{
                     if(record.Email__c==email && record.Password__c==password){
                         window.location.href = "/canINte/home.html";
                     }else{
                         alert("email address and passsword does not match");
                     }
-                })
+                });
               //alert("Form data submitted successfully!");
                 
             })

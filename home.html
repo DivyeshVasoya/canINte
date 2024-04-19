@@ -130,7 +130,7 @@ Aesthetics
           
           // console.log("This is actual data",data);
           
-    const formData = new FormData(this);
+    let formData = new FormData(this);
     const dropdown = document.getElementById("recordDropdown");
     const selectedRecordId = dropdown.options[dropdown.selectedIndex].value;
 
@@ -160,7 +160,7 @@ Aesthetics
     reader.onload = function(event) {
         const resumeData = event.target.result.split(',')[1]; // Extract base64 data
 
-        const formData = {
+        formData = {
             firstName: firstName,
             lastName: lastName,
             selectedRecordId: selectedRecordId,

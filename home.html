@@ -187,7 +187,7 @@ Aesthetics
                 Authorization: `Bearer ${accessToken}`,
                 "Content-Type": "application/json"
               },
-              body:formData,
+              body:JSON.stringify(formData),
             }
           )
             .then((response) => {

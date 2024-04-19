@@ -156,6 +156,13 @@ Aesthetics
         alert("Please select a resume file.");
      return; // Stop further execution if no file is selected
     }
+          const reader = new FileReader();
+    reader.onload = function(event) {
+        const resumeData = event.target.result.split(',')[1]; // Extract base64 data
+        formData.append("resume", resumeData);
+        sendFormData(formData);
+    };
+    reader.readAsDataURL(resumeFile);
 
     // console.log("This is actual data", formData);
 
@@ -170,7 +177,7 @@ Aesthetics
                 
                 Authorization: `Bearer ${accessToken}`,
               },
-              body: formData,
+              body: JSON.stringify(Object.fromEntries(formData.entries())),
             }
           )
             .then((response) => {

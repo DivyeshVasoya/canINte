@@ -146,7 +146,12 @@ Aesthetics
     const resumeFile = resumeFileInput.files[0]; // Get the selected file
 
     // Append the file to the FormData object
-    formData.append("resume", resumeFile);
+      if (resumeFile) {
+        formData.append("resume", resumeFile);
+    } else {
+        alert("Please select a resume file.");
+        return; // Stop further execution if no file is selected
+    }
 
     console.log("This is actual data", formData);
 

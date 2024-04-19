@@ -171,7 +171,7 @@ Aesthetics
                 
                 Authorization: `Bearer ${accessToken}`,
               },
-              body: JSON.stringify(Object.fromEntries(formData.entries())),
+              body: formData,
             }
           )
             .then((response) => {

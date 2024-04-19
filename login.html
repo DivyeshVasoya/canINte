@@ -88,6 +88,7 @@
                 result.forEach(record=>{
                     if(record.Email__c==email && record.Password__c==password){
                         match=true;
+                        localStorage.setItem("emailId", email);
                          window.location.href = "/canINte/home.html";
                         return;
                        

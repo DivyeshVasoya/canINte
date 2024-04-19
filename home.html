@@ -139,11 +139,11 @@ Aesthetics
     const lastName = document.getElementById("lname").value;
 
     // Add first name and last name to the formData
-    formData.append("firstName", firstName);
-    formData.append("lastName", lastName);
+   // formData.append("firstName", firstName);
+   // formData.append("lastName", lastName);
     
-    formData.append("selectedRecordId", selectedRecordId);
-    formData.append("email", localStorage.getItem("emailId"));
+    //formData.append("selectedRecordId", selectedRecordId);
+    const email=localStorage.getItem("emailId");
 
     // Retrieve the file input element
    const resumeFileInput = document.getElementById("resume");

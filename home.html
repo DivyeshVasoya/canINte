@@ -115,16 +115,40 @@ Aesthetics
         .addEventListener("submit", function (event) {
           event.preventDefault();
 
-          const formData = new FormData(this);
-          const data = {};
-          formData.forEach((value, key) => {
-            data[key] = value;
-          });
-          const dropdown = document.getElementById("recordDropdown");
-          const selectedRecordId = dropdown.options[dropdown.selectedIndex].value;
-           data["selectedRecordId"] = selectedRecordId;
-          data["email"]=localStorage.getItem("emailId");
-          console.log("This is actual data",data);
+          // const formData = new FormData(this);
+          // const data = {};
+          // formData.forEach((value, key) => {
+          //   data[key] = value;
+          // });
+          // const dropdown = document.getElementById("recordDropdown");
+          // const selectedRecordId = dropdown.options[dropdown.selectedIndex].value;
+          //  data["selectedRecordId"] = selectedRecordId;
+          // data["email"]=localStorage.getItem("emailId");
+          // console.log("This is actual data",data);
+          
+    const formData = new FormData(this);
+    const dropdown = document.getElementById("recordDropdown");
+    const selectedRecordId = dropdown.options[dropdown.selectedIndex].value;
+
+    // Retrieve first name and last name fields
+    const firstName = document.getElementById("fname").value;
+    const lastName = document.getElementById("lname").value;
+
+    // Add first name and last name to the formData
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    
+    formData.append("selectedRecordId", selectedRecordId);
+    formData.append("email", localStorage.getItem("emailId"));
+
+    // Retrieve the file input element
+    const resumeFileInput = document.getElementById("resume");
+    const resumeFile = resumeFileInput.files[0]; // Get the selected file
+
+    // Append the file to the FormData object
+    formData.append("resume", resumeFile);
+
+    console.log("This is actual data", formData);
 
           const accessToken =
             "00D5g00000LOawI!ARsAQJjFVGcbZM6vMnTKUPcoYvOVSl.oozHxLwmaDRVdgVdSrHVgefz7wDGJlDs_4d7wgyEydGNHtS8NTemJnef2SHSbDYaU"; // Replace with your access token
@@ -137,7 +161,7 @@ Aesthetics
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${accessToken}`,
               },
-              body: JSON.stringify(data),
+              body: JSON.stringify({ data: Object.fromEntries(formData.entries()) }),
             }
           )
             .then((response) => {

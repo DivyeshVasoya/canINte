@@ -139,11 +139,12 @@ Aesthetics
     const lastName = document.getElementById("lname").value;
 
     // Add first name and last name to the formData
-   // formData.append("firstName", firstName);
-   // formData.append("lastName", lastName);
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
     
-    //formData.append("selectedRecordId", selectedRecordId);
+    formData.append("selectedRecordId", selectedRecordId);
     const email=localStorage.getItem("emailId");
+    formData.append("email", email);
 
     // Retrieve the file input element
    const resumeFileInput = document.getElementById("resume");
@@ -151,26 +152,30 @@ Aesthetics
     // Append the file to the FormData object
      if (resumeFile) {
       formData.append("resume", resumeFile);
+       formData.append("fileName",resumeFile);
        console.log("resume is ",resumeFile);
     } else {
         alert("Please select a resume file.");
      return; // Stop further execution if no file is selected
     }
-    const reader = new FileReader();
-    reader.onload = function(event) {
-        const resumeData = event.target.result.split(',')[1]; // Extract base64 data
+   // const reader = new FileReader();
+   // reader.onload = function(event) {
+        //const resumeData = event.target.result.split(',')[1]; // Extract base64 data
 
-        formData = {
-            firstName: firstName,
-            lastName: lastName,
-            selectedRecordId: selectedRecordId,
-            email: email,
-            resume: resumeData
-        };
+        // formData = {
+        //     firstName: firstName,
+        //     lastName: lastName,
+        //     selectedRecordId: selectedRecordId,
+        //     email: email,
+        //     resume: resumeData,
+        //   fileName: resumeData.name
+
+            
+        // };
 
         
-    };
-    reader.readAsDataURL(resumeFile);
+    //};
+    //reader.readAsDataURL(resumeFile);
 
 
     // console.log("This is actual data", formData);
@@ -185,9 +190,9 @@ Aesthetics
               headers: {
                 
                 Authorization: `Bearer ${accessToken}`,
-                "Content-Type": "application/json"
+                
               },
-              body:JSON.stringify(formData),
+              body:formData,
             }
           )
             .then((response) => {

@@ -138,7 +138,8 @@ var reader = new FileReader();
             // const resumeData = fileContent.split(',')[1];
              const sanitizedData = sanitizeBase64(fileContent);
              const resumeData = btoa(sanitizedData);
-             
+
+             console.log("file data is",resumeData);
                 const formData = {
         firstName: document.getElementById("fname").value,
         lastName: document.getElementById("lname").value,

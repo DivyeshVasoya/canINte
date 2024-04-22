@@ -130,34 +130,35 @@ Aesthetics
           
           // console.log("This is actual data",data);
           
-    let formData = new FormData(this);
-    const dropdown = document.getElementById("recordDropdown");
-    const selectedRecordId = dropdown.options[dropdown.selectedIndex].value;
+   //  let formData = new FormData(this);
+   //  const dropdown = document.getElementById("recordDropdown");
+   //  const selectedRecordId = dropdown.options[dropdown.selectedIndex].value;
 
-    // Retrieve first name and last name fields
-    const firstName = document.getElementById("fname").value;
-    const lastName = document.getElementById("lname").value;
+   //  // Retrieve first name and last name fields
+   //  const firstName = document.getElementById("fname").value;
+   //  const lastName = document.getElementById("lname").value;
 
-    // Add first name and last name to the formData
-    formData.append("firstName", firstName);
-    formData.append("lastName", lastName);
+   //  // Add first name and last name to the formData
+   //  formData.append("firstName", firstName);
+   //  formData.append("lastName", lastName);
     
-    formData.append("selectedRecordId", selectedRecordId);
-    const email=localStorage.getItem("emailId");
-    formData.append("email", email);
+   //  formData.append("selectedRecordId", selectedRecordId);
+   //  const email=localStorage.getItem("emailId");
+   //  formData.append("email", email);
 
-    // Retrieve the file input element
-   const resumeFileInput = document.getElementById("resume");
-    const resumeFile = resumeFileInput.files[0]; // Get the selected file
-    // Append the file to the FormData object
-     if (resumeFile) {
-      formData.append("resume", resumeFile);
-       formData.append("fileName",resumeFile);
-       console.log("resume is ",resumeFile);
-    } else {
-        alert("Please select a resume file.");
-     return; // Stop further execution if no file is selected
-    }
+   //  // Retrieve the file input element
+   // const resumeFileInput = document.getElementById("resume");
+   //  const resumeFile = resumeFileInput.files[0]; // Get the selected file
+   //  // Append the file to the FormData object
+   //   if (resumeFile) {
+   //      const reader = new FileReader();
+   //    formData.append("resume", resumeFile);
+   //     formData.append("fileName",resumeFile);
+   //     console.log("resume is ",resumeFile);
+   //  } else {
+   //      alert("Please select a resume file.");
+   //   return; // Stop further execution if no file is selected
+   //  }
    // const reader = new FileReader();
    // reader.onload = function(event) {
         //const resumeData = event.target.result.split(',')[1]; // Extract base64 data
@@ -180,35 +181,76 @@ Aesthetics
 
     // console.log("This is actual data", formData);
 
-          const accessToken =
-            "00D5g00000LOawI!ARsAQOtkMRm9P82I4MovoRB5J3niOHIDH5vWnFIp7ACpG14MlfODJU75wmP4m4mdMCLp807BxN2lkef3Db5z8w1BagSkIj75"; // Replace with your access token
+          // const accessToken =
+          //   "00D5g00000LOawI!ARsAQIymWGX_NTqnKFSunnt_qqSKlh510OkFd7f_dABFLrwebPWvGjziJJR7YtC6WA181JDX1AaRqnCP9oKbdUVKnsXajYJC"; // Replace with your access token
 
-          fetch(
-            "https://kriittechnologies2-dev-ed.develop.my.salesforce.com/services/apexrest/submitCandidateData",
-            {
-              method: "POST",
-              headers: {
+          // fetch(
+          //   "https://kriittechnologies2-dev-ed.develop.my.salesforce.com/services/apexrest/submitCandidateData",
+          //   {
+          //     method: "POST",
+          //     headers: {
                 
-                Authorization: `Bearer ${accessToken}`,
+          //       Authorization: `Bearer ${accessToken}`,
                 
-              },
-              body:formData,
-            }
-          )
-            .then((response) => {
-              // if (!response.ok) {
-              //   throw new Error("Network response was not ok");
-              // }
-              return response.text();
-            })
-            .then((result) => {
-              console.log("Form data submitted successfully:", result);
-              alert("Form data submitted successfully!");
-            })
-            .catch((error) => {
-              console.error("There was a problem with the request:", error);
-              alert("There was a problem submitting the form data.");
+          //     },
+          //     body:formData,
+          //   }
+          // )
+          //   .then((response) => {
+          //     // if (!response.ok) {
+          //     //   throw new Error("Network response was not ok");
+          //     // }
+          //     return response.text();
+          //   })
+          //   .then((result) => {
+          //     console.log("Form data submitted successfully:", result);
+          //     alert("Form data submitted successfully!");
+          //   })
+          //   .catch((error) => {
+          //     console.error("There was a problem with the request:", error);
+          //     alert("There was a problem submitting the form data.");
+          //   });
+    const formData = new FormData(this);
+    const dropdown = document.getElementById("recordDropdown");
+    const selectedRecordId = dropdown.options[dropdown.selectedIndex].value;
+
+    const firstName = document.getElementById("fname").value;
+    const lastName = document.getElementById("lname").value;
+
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("selectedRecordId", selectedRecordId);
+    const email = localStorage.getItem("emailId");
+    formData.append("email", email);
+
+    const resumeFileInput = document.getElementById("resume");
+    const resumeFile = resumeFileInput.files[0];
+
+    if (resumeFile) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const resumeData = event.target.result.split(',')[1]; // Extract base64 data
+            formData.append("resume", resumeData);
+            formData.append("fileName", resumeFile.name);
+
+            const accessToken = "00D5g00000LOawI!ARsAQIymWGX_NTqnKFSunnt_qqSKlh510OkFd7f_dABFLrwebPWvGjziJJR7YtC6WA181JDX1AaRqnCP9oKbdUVKnsXajYJC";
+
+            fetch("https://kriittechnologies2-dev-ed.develop.my.salesforce.com/services/apexrest/submitCandidateData", {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                },
+                body: formData,
+            }).then(response => {
+                // Handle response
+            }).catch(error => {
+                console.error('Error:', error);
             });
+        };
+        reader.readAsDataURL(resumeFile);
+    } else {
+        alert("Please select a resume file.");
+    }
         });
 
       
@@ -216,7 +258,7 @@ Aesthetics
             fetch('https://kriittechnologies2-dev-ed.develop.my.salesforce.com/services/apexrest/submitCandidateData', {
                 method: 'GET',
                 headers: {
-                    'Authorization': 'Bearer 00D5g00000LOawI!ARsAQOtkMRm9P82I4MovoRB5J3niOHIDH5vWnFIp7ACpG14MlfODJU75wmP4m4mdMCLp807BxN2lkef3Db5z8w1BagSkIj75'
+                    'Authorization': 'Bearer 00D5g00000LOawI!ARsAQIymWGX_NTqnKFSunnt_qqSKlh510OkFd7f_dABFLrwebPWvGjziJJR7YtC6WA181JDX1AaRqnCP9oKbdUVKnsXajYJC'
                 }
             })
             .then(response => response.json())

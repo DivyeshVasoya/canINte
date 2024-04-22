@@ -137,7 +137,7 @@ var reader = new FileReader();
                 var fileContent = event.target.result;
             const resumeData = fileContent.split(',')[1];
             // const sanitizedData = sanitizeBase64(fileContent);
-             //const resumeData = btoa(sanitizedData);
+             const resumeData = btoa(sanitizedData);
 
              console.log("file data is",resumeData);
                 const formData = {

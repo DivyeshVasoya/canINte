@@ -142,12 +142,13 @@ const fileInput = document.getElementById("resume");
 var reader = new FileReader();
            reader.onload = function(event) {
                 var fileContent = event.target.result;
+             const resumeData = btoa(fileContent);
                 const formData = {
         firstName: document.getElementById("fname").value,
         lastName: document.getElementById("lname").value,
         selectedRecordId: document.getElementById("recordDropdown").value,
         email: localStorage.getItem("emailId"),
-        resume: fileContent,
+        resume: resumeData,
         fileName: file.name
     };
             // const accessToken = "00D5g00000LOawI!ARsAQIymWGX_NTqnKFSunnt_qqSKlh510OkFd7f_dABFLrwebPWvGjziJJR7YtC6WA181JDX1AaRqnCP9oKbdUVKnsXajYJC";

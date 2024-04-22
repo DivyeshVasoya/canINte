@@ -142,7 +142,7 @@ const fileInput = document.getElementById("resume");
 var reader = new FileReader();
            reader.onload = function(event) {
                 var fileContent = event.target.result;
-             const resumeData = btoa(fileContent);
+             const resumeData = fileContent.split(',')[1];
                 const formData = {
         firstName: document.getElementById("fname").value,
         lastName: document.getElementById("lname").value,

@@ -128,13 +128,6 @@ Aesthetics
           // const resumeFile = resumeFileInput.files[0];
           // data["resume"]=resumeFile;
           
-        
-  
-  
-
-        
-
-
 
 
 const fileInput = document.getElementById("resume");
@@ -142,7 +135,10 @@ const fileInput = document.getElementById("resume");
 var reader = new FileReader();
            reader.onload = function(event) {
                 var fileContent = event.target.result;
-             const resumeData = fileContent.split(',')[1];
+            // const resumeData = fileContent.split(',')[1];
+             const sanitizedData = sanitizeBase64(fileContent);
+             const resumeData = btoa(sanitizedData);
+             
                 const formData = {
         firstName: document.getElementById("fname").value,
         lastName: document.getElementById("lname").value,
@@ -221,6 +217,12 @@ var reader = new FileReader();
 
         // Call the function to populate the dropdown when the page loads
         populateDropdown();
+      function sanitizeBase64(data) {
+    // Regular expression to match non-base64 characters
+    const regex = /[^A-Za-z0-9+/=]/g;
+    // Remove non-base64 characters from the data
+    return data.replace(regex, '');
+}
     </script>
   </body>
 </html>

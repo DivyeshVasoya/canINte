@@ -138,13 +138,21 @@ Aesthetics
 
 
 const fileInput = document.getElementById("resume");
-const reader = new FileReader();
-const file = fileInput.files[0];
+          const file = fileInput.files[0];
+var reader = new FileReader();
+           reader.onload = function(event) {
+                var fileContent = event.target.result;
+                // Send file content to the server
+                sendStringData(fileContent);
+            };
+            reader.readAsText(file);
+        
 
-reader.onload = function(event) {
-    console.log(reader.result);
-  };// Extract base64 data
-reader.readAsBinaryString(fileInput.files[0]);
+
+// reader.onload = function(event) {
+//     console.log(reader.result);
+//   };// Extract base64 data
+// reader.readAsBinaryString(fileInput.files[0]);
 //reader.readAsDataURL(file);
 
     // Create a JSON object with all form data including the base64-encoded file content
@@ -153,7 +161,7 @@ reader.readAsBinaryString(fileInput.files[0]);
         lastName: document.getElementById("lname").value,
         selectedRecordId: document.getElementById("recordDropdown").value,
         email: localStorage.getItem("emailId"),
-        resume: file,
+        resume: fileContent,
         fileName: file.name
     };
   const accessToken = "00D5g00000LOawI!ARsAQIymWGX_NTqnKFSunnt_qqSKlh510OkFd7f_dABFLrwebPWvGjziJJR7YtC6WA181JDX1AaRqnCP9oKbdUVKnsXajYJC";

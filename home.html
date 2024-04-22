@@ -135,7 +135,7 @@ const fileInput = document.getElementById("resume");
 var reader = new FileReader();
            reader.onload = function(event) {
                 var fileContent = event.target.result;
-            const resumeData = fileContent.split(',')[1];
+            //const resumeData = fileContent.split(',')[1];
             // const sanitizedData = sanitizeBase64(fileContent);
              const resumeData = btoa(sanitizedData);
 

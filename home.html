@@ -110,36 +110,22 @@ Aesthetics
     </form>
 
     <script>
-      document
-        .getElementById("salesforceForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
+      document.getElementById("salesforceForm").addEventListener("submit", function (event) {
+        
+        event.preventDefault();
 
-          //  const formData = new FormData(this);
-          //  const data = {};
-          //  formData.forEach((value, key) => {
-          //    data[key] = value;
-          //  });
-          // const dropdown = document.getElementById("recordDropdown");
-          // const selectedRecordId = dropdown.options[dropdown.selectedIndex].value;
-          // data["selectedRecordId"] = selectedRecordId;
-          // data["email"]=localStorage.getItem("emailId");
-          // const resumeFileInput = document.getElementById("resume");
-          // const resumeFile = resumeFileInput.files[0];
-          // data["resume"]=resumeFile;
+          
           
 
 
-const fileInput = document.getElementById("resume");
+          const fileInput = document.getElementById("resume");
           const file = fileInput.files[0];
-var reader = new FileReader();
+          var reader = new FileReader();
+        
            reader.onload = function(event) {
-                //var fileContent = event.target.result;
-            const resumeData = reader.result.split(',')[1];
-            // const sanitizedData = sanitizeBase64(fileContent);
-            // const resumeData = btoa(sanitizedData);
-
+           const resumeData = reader.result.split(',')[1];
              console.log("file data is",resumeData);
+             
                 const formData = {
         firstName: document.getElementById("fname").value,
         lastName: document.getElementById("lname").value,
@@ -148,19 +134,10 @@ var reader = new FileReader();
         resume: resumeData,
         fileName: file.name
     };
-            // const accessToken = "00D5g00000LOawI!ARsAQIymWGX_NTqnKFSunnt_qqSKlh510OkFd7f_dABFLrwebPWvGjziJJR7YtC6WA181JDX1AaRqnCP9oKbdUVKnsXajYJC";
-                
+           console.log("Form data:", formData);
             
         reader.readAsDataURL(file);
 
-
-// reader.onload = function(event) {
-//     console.log(reader.result);
-//   };// Extract base64 data
-// reader.readAsBinaryString(fileInput.files[0]);
-
-
-    // Create a JSON object with all form data including the base64-encoded file content
    
   const accessToken = "00D5g00000LOawI!ARsAQIfFPztJfmcnG0K10QmZNESv41sfuJVZ9RXQ3QEd1g6cUuDxVnxj6HS4BYtF_nddPPFMHEpGrwVDs1r5Is5k6jdSdo9X";
 
@@ -175,6 +152,7 @@ var reader = new FileReader();
     })
     .then(response => {
         // Handle response
+      alert("Form Data Submitted Successfully");
     })
     .catch(error => {
         console.error('Error:', error);
@@ -225,6 +203,18 @@ var reader = new FileReader();
 //     // Remove non-base64 characters from the data
 //     return data.replace(regex, '');
 // }
+      //  const formData = new FormData(this);
+          //  const data = {};
+          //  formData.forEach((value, key) => {
+          //    data[key] = value;
+          //  });
+          // const dropdown = document.getElementById("recordDropdown");
+          // const selectedRecordId = dropdown.options[dropdown.selectedIndex].value;
+          // data["selectedRecordId"] = selectedRecordId;
+          // data["email"]=localStorage.getItem("emailId");
+          // const resumeFileInput = document.getElementById("resume");
+          // const resumeFile = resumeFileInput.files[0];
+          // data["resume"]=resumeFile;
     </script>
   </body>
 </html>

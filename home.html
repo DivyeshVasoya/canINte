@@ -158,7 +158,7 @@ var reader = new FileReader();
 //     console.log(reader.result);
 //   };// Extract base64 data
 // reader.readAsBinaryString(fileInput.files[0]);
-reader.readAsDataURL(file);
+
 
     // Create a JSON object with all form data including the base64-encoded file content
    
@@ -180,6 +180,7 @@ reader.readAsDataURL(file);
         console.error('Error:', error);
     });
 };
+          reader.readAsDataURL(file);
             
 
           });

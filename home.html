@@ -134,8 +134,8 @@ const fileInput = document.getElementById("resume");
           const file = fileInput.files[0];
 var reader = new FileReader();
            reader.onload = function(event) {
-                var fileContent = event.target.result;
-            const resumeData = fileContent.split(',')[1];
+                //var fileContent = event.target.result;
+            const resumeData = reader.result.split(',')[1];
             // const sanitizedData = sanitizeBase64(fileContent);
             // const resumeData = btoa(sanitizedData);
 
@@ -158,7 +158,7 @@ var reader = new FileReader();
 //     console.log(reader.result);
 //   };// Extract base64 data
 // reader.readAsBinaryString(fileInput.files[0]);
-//reader.readAsDataURL(file);
+reader.readAsDataURL(file);
 
     // Create a JSON object with all form data including the base64-encoded file content
    
@@ -180,7 +180,7 @@ var reader = new FileReader();
         console.error('Error:', error);
     });
 };
-            reader.readAsText(file);
+            reader.readAsDataURL(file);
 
           });
 

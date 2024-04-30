@@ -54,3 +54,7 @@ body {
         .login-link a:hover {
             text-decoration: underline;
         }
+*{
+font-family: "Poppins", sans-serif;            
+}
+

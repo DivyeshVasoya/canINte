@@ -8,82 +8,109 @@
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
         body {
-            font-family: "Poppins", sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
-        form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            margin: 0 auto;
-        }
-        input[type="text"],
-        input[type="password"],
-        input[type="email"]{
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-        }
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-        .login-link {
-            text-align: center;
-            margin-top: 10px;
-        }
-        .login-link a {
-            color: #333;
-            text-decoration: none;
-        }
-        .login-link a:hover {
-            text-decoration: underline;
-        }
+        font-family: "Poppins", sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+      }
+      form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      input[type="text"],
+      input[type="password"],
+      input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+      input[type="submit"] {
+        background-color: #4070f4;
+        color: white;
+        padding: 15px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+      }
+      input[type="submit"]:hover {
+        background-color: #4070f4;
+      }
+      .login-link {
+        text-align: center;
+        margin-top: 10px;
+      }
+      .login-link a {
+        color: #333;
+        text-decoration: none;
+      }
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+      .btnText {
+        font-size: 14px;
+        font-weight: 400;
+        font-family: "Poppins", sans-serif;
+      }
+      .g-recaptcha {
+        margin-top: 18px;
+        justify-content: center;
+        display: flex;
+      }
     </style>
 </head>
 <body>
 
-<form id="loginForm">
-    <h2>Login</h2>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
+<form id="loginForm" onsubmit="beforesubmit(event)">
+      <h2>Login</h2>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
 
-    <input type="submit" value="Login">
-    <div class="login-link">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+
+      <div
+        class="g-recaptcha"
+        data-callback="captchasuccess"
+        data-sitekey="6Lcexp4pAAAAAOxdvSO56o7-xR8N97ntVRy6MCna"
+      ></div>
+      <br />
+
+      <input type="submit" value="Login" class="btnText" />
+      <div class="login-link">
         Don't Register Yet ? <a href="/canINte/index.html">Register</a>
-    </div>
-</form>
-
+      </div>
+    </form>
+    
 <script>
-    document.getElementById("loginForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent the default form submission
+     function beforesubmit(event) {
+      event.preventDefault(); // Prevent the default form submission
+      if (captcha) {
+        submitForm();
+      } else {
+        alert("Please complete the reCAPTCHA challenge.");
+      }
+    }
+
+    function captchasuccess() {
+      captcha = true;
+    }
+ function submitForm() {
         
-        // Get form data
-        var formData = new FormData(this);
+        var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
         
-        // Convert form data to JSON object
-        var jsonObject = {};
-        formData.forEach(function(value, key){
-            jsonObject[key] = value;
-        });
+        var data = {
+        email: email,
+        password: password
+      };
         const accessToken =
             "00D5g00000LOawI!ARsAQIfFPztJfmcnG0K10QmZNESv41sfuJVZ9RXQ3QEd1g6cUuDxVnxj6HS4BYtF_nddPPFMHEpGrwVDs1r5Is5k6jdSdo9X";
 
@@ -122,7 +149,7 @@
               console.error("There was a problem with the request:", error);
               alert("There was a problem submitting the form data.");
             });
-        });
+ }
         
        
 </script>

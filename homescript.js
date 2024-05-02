@@ -260,6 +260,7 @@ document
         .then((response) => {
           // Handle response
           alert("Form Data Submitted Successfully");
+          window.location.href = "/canINte/thanks.html";
         })
         .catch((error) => {
           console.error("Error:", error);

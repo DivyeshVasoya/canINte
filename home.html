@@ -3,220 +3,580 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Submit Form Data to Salesforce</title>
-    <style> 
-      input[type=text],input[type=email] {
-      width: 100%;
-      padding: 12px 20px;
-      margin: 8px 0;
-      box-sizing: border-box;
-      border: 2px solid red;
-      border-radius: 4px;
-}
-      .custom-select {
-  min-width: 350px;
-  position: relative;
-}
+    <title>Document</title>
+    <link rel="stylesheet" href="homestyle.css"/>
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"/>
 
-select {
-  appearance: none;
-  /*  safari  */
-  -webkit-appearance: none;
-  /*  other styles for aesthetics */
-  width: 100%;
-  font-size: 1.15rem;
-  padding: 0.675em 6em 0.675em 1em;
-  background-color: #fff;
-  border: 1px solid #caced1;
-  border-radius: 0.25rem;
-  color: #000;
-  cursor: pointer;
-}
-
-.custom-select::before,
-.custom-select::after {
-  --size: 0.3rem;
-  content: "";
-  position: absolute;
-  right: 1rem;
-  pointer-events: none;
-}
-
-.custom-select::before {
-  border-left: var(--size) solid transparent;
-  border-right: var(--size) solid transparent;
-  border-bottom: var(--size) solid black;
-  top: 40%;
-}
-
-.custom-select::after {
-  border-left: var(--size) solid transparent;
-  border-right: var(--size) solid transparent;
-  border-top: var(--size) solid black;
-  top: 55%;
-}
-
-
-/*=============
-Aesthetics 
-=========================*/
-
-* {
-  box-sizing: border-box;
-}
-      .button {
-  background-color: #04AA6D; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-.button4 {
-  background-color: white;
-  color: black;
-  border: 2px solid #e7e7e7;
-}
-  .f{
-    font-family: "Lucida Console", "Courier New", monospace;
-
-  }
-</style>
   </head>
   <body>
-    <h1 class="f">Apply For Job Now</h1>
-    <form id="salesforceForm">
-      <label for="fname" class="f">First Name:</label>
-      <input type="text" id="fname" name="firstName" required /><br /><br />
-      <label for="lname" class="f">Last Name:</label>
-      <input type="text" id="lname" name="lastName" required /><br /><br />
+    <div class="container">
+      <header>Registration</header>
+      <form action="#" id="salesforceForm">
+        <div class="form first active" >
+          <div class="details personal">
+            <span class="title">Personal Details</span>
 
+            <div class="fields">
+              <div class="input-field">
+                <label>Salutation</label>
+                <select id="salutation" >
+                  <option disabled selected>Select Salutation</option>
+                  <option>Mr.</option>
+                  <option>Ms.</option>
+                  <option>Miss.</option>
+                  <option>Mrs.</option>
+                  <option>Rev.</option>
+                  <option>Dr.</option>
+                  <option>Prof.</option>
+                  <option>Mx.</option>
+                  
+                </select>
+              </div>
 
-      
-      <label for="position" class="f">Position:</label>
-      <div class="custom-select">
-      <select id="recordDropdown">
-        <!-- Dropdown options will be populated dynamically -->
-      </select>
-      </div>
-      <br /><br />
-      <label for="resume" class="f">Resume:</label>
-    <input type="file" id="resume"  accept=".pdf, .doc, .docx" required /><br /><br />
-      <button class="button button4" type="submit">Submit</button>
-    </form>
+              <div class="input-field">
+                <label>First Name</label>
+                <input type="text" id="firstName" placeholder="Enter First Name"  />
+              </div>
 
-    <script>
-      document.getElementById("salesforceForm").addEventListener("submit", function (event) {
-        
-        event.preventDefault();
+              <div class="input-field">
+                <label>Middle Name</label>
+                <input type="text" id="middleName" placeholder="Enter Middle Name"  />
+              </div>
 
+              <div class="input-field">
+                <label>Last Name</label>
+                <input type="text" id="lastName" placeholder="Enter Last Name"  />
+              </div>
+
+              <div class="input-field">
+                <label>Date of Birth</label>
+                <input type="date" id="dob" placeholder="Enter birth date"  />
+              </div>
+
+              <div class="input-field">
+                <label>Gender</label>
+                <select id="gender" >
+                  <option disabled selected>Select gender</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Non-binary</option>
+                  <option>Transgender</option>
+                  <option>Others</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="address">
+            <span class="title">Permanent Address</span>
+
+            <div class="fields">
+              <div class="input-field">
+                <label>House No./Apartment Name/Block No:</label>
+                <input type="text" id="houseNo" placeholder="Enter House No"  />
+              </div>
+
+              <div class="input-field">
+                <label>Road/Street/Lane:</label>
+                <input type="text" id="streetName" placeholder="Enter Street Name"  />
+              </div>
+
+              <div class="input-field">
+                <label>Area/Landmark:</label>
+                <input type="text" id="areaName" placeholder="Enter Area Name"  />
+              </div>
+
+              <div class="input-field">
+                <label>Country:</label>
+                <select id="country" onchange="updateStates()" >
+                  <option disabled selected>Select Country</option>
+                  <option>India</option>
+                  <option>United States</option>
+                  <option>United Kingdom</option>
+                  <option>Australia</option>
+                  <option>China</option>
+                  <option>Japan</option>
+                  <option>Germany</option>
+                  <option>Pakistan</option>
+                  <option>South Africa</option>
+                </select>
+              </div>
+
+              <div class="input-field">
+                <label>State:</label>
+                <select id="state">
+                  <option disabled selected>Select State</option>
+                  
+                  
+                </select>
+              </div>
+
+              <div class="input-field">
+                <label>City:</label>
+                <input type="text" id="city" placeholder="Enter City Here"  />
+              </div>
+
+              <div class="input-field">
+                <label>Pincode:</label>
+                <input
+                  type="number"
+                  id="pincode"
+                  placeholder="Enter Pincode Here"
+                  
+                />
+              </div>
+            </div>
+            <button class="nextBtn" data-next="second">
+              <span class="btnText">Next</span>
+              <i class="arrow right"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="form second" >
+          <div class="contact">
+            <span class="title">Contact Details</span>
+            <div class="fields">
+              <div class="input-field">
+                <label>Email ID:</label>
+                <input type="email" id="email" placeholder="Enter Email"  />
+              </div>
+              <div class="input-field">
+                <label>Alternate Email ID:</label>
+                <input
+                  type="email"
+                  id="altEmail"
+                  placeholder="Enter Alternate Email"
+                  
+                />
+              </div>
+              <div class="input-field">
+                <label>Mobile Phone:</label>
+                <input
+                  type="number"
+                  id="phone"
+                  placeholder="Enter Mobile Phone"
+                  
+                />
+              </div>
+              <div class="input-field">
+                <label>Alternate Number</label>
+                <input
+                  type="number"
+                  id="altPhone"
+                  placeholder="Enter Alternate Phone"
+                  
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="Education Qualifi">
+            <span class="title">Highest Qualification Details</span>
+
+            <div class="fields">
+              <div class="input-field">
+                <label>Institute Name:</label>
+                <select id="highInstitute">
+                  <option disabled selected>Select Institute</option>
+                  <option>Shrimad Rajchandra Institute of Management and Computer Application, Bardoli</option>
+                  <option>P.P. Savani University, Surat</option>
+                  <option>Sarvajanik College of Engineering and Technology - [SCET], Surat</option>
+                  <option>Vidhyadeep University, Surat</option>
+                  <option>Chhotubhai Gopalbhai Patel Institute of Technology - [CGPIT], Bardoli</option>
+                  <option>Bhagwan Mahavir College of Management - [BMCM], Surat</option>
+                  <option>Veer Narmad South Gujarat University - [VNSGU], Surat</option>
+                  <option>Bhagwan Mahavir Education Foundation - [BMEF], Surat</option>
+                  <option>Vidyabharti Trust College Of Master in computer Application - [VBTMCA], Surat</option>
+                  <option>Bhagwan Mahavir University - [BMU], Surat</option>
+                  <option>Auro University, Surat</option>
+                </select>
+              </div>
+              <div class="input-field">
+                <label>Highest Qualification</label>
+                <select id="highQualification">
+                  <option disabled selected>Select Qualification</option>
+                  <option>MCA</option>
+                  <option>MSc IT</option>
+                  <option>MSc CS</option>
+                  <option>ME CE</option>
+                  <option>ME IT</option>
+                  <option>MSc SE</option>
+                </select>
+              </div>
+              <div class="input-field">
+                <label>Year of Pasing:</label>
+                <select id="yearOfPassing">
+                  <option disabled selected>Select Year of Passing</option>
+                  <option>2026</option>
+                  <option>2025</option>
+                  <option>2024</option>
+                  <option>2023</option>
+                  <option>2022</option>
+                  <option>2021</option>
+                </select>
+              </div>
+            </div>
+            <div class="buttons">
+              <div class="backBtn" data-prv="first">
+                <i class="arrow left"></i>
+                <span class="btnText">Back</span>
+              </div>
+
+              <button class="nextBtn" data-next="third">
+                <span class="btnText">Next</span>
+                <i class="arrow right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form third" >
+
+          <div clas="education">
+            <span class="title">Under Graduate</span>
+
+            <div class="fields">
+              <div class="input-field">
+                <label>Course Name:</label>
+                <select id="ugCourseName">
+                  <option disabled selected>Select Course</option>
+                  <option>BCA</option>
+                  <option>BTech CSE</option>
+                  <option>BSc IT</option>
+                  <option>BE IT</option>
+                  <option>BSc SE</option>
+                  <option>BE CE</option>
+                  <option>BSc CIS</option>
+                </select>
+              </div>
+
+              <div class="input-field">
+                <label>Course Duration:</label>
+                <input type="date" name="ugStartDate" placeholder="Enter start date"  />
+                <input type="date" name="ugEndDate" placeholder="Enter end date"  />
+              </div>
+
+              <div class="input-field">
+                <label>Course Type:</label>
+                <select id="ugCourseType">
+                  <option disabled selected>Select Course Type</option>
+                  <option>Full Time</option>
+                  <option>Part Time</option>
+                </select>
+                <label>Specialization Name:</label>
+                <select id="ugSpecilization" >
+                  <option disabled selected>Select Specialization</option>
+                  <option>Computer Science</option>
+                  <option>Artificial Intelligence (AI)</option>
+                  <option>Information Technology</option>
+                  <option>Cybersecurity</option>
+                  <option>Software Engineering</option>
+                  <option>Computer Networking</option>
+                  <option>Computer Graphics and Visualization</option>
+                  <option>Cloud Computing</option>
+                  <option>Human-Computer Interaction (HCI):</option>
+                </select>
+              </div>
+
+              <div class="input-field">
+                <label>Institute Name:</label>
+                <select id="ugInstituteName" >
+                  <option disabled selected>Select Institute</option>
+                  <option>Sutex Bank College of Computer Applications and Science, Surat</option>
+                  <option>C.U Shah Institute of Computer Application, Ahemadabad</option>
+                  <option>P.P. Savani University, Surat</option>
+                  <option>Sarvajanik College of Commerce and Computer Application, Surat</option>
+                  <option>Vidhyadeep University, Surat</option>
+                  <option>Chhotubhai Gopalbhai Patel Institute of Technology - [CGPIT], Bardoli</option>
+                  <option>Bhagwan Mahavir College of Management, Surat</option>
+                  <option>C. B. Patel Computer College and Jamanaben Narottambhai Motiram Patel Science College</option>
+                  <option>Babu Madhav Institute of Information Technology - [BMIIT]</option>
+                  <option>SDJ International College, Surat</option>
+                  <option>Ganpat University, Mahesana</option>
+                  <option>Shri Shambhubhai V. Patel College of Computer Science and Business Management</option>
+                  <option>Ambaba Commerce College</option>
+                  <option>Vivekanand College, Surat</option>
+                </select>
+              </div>
+              <div class="input-field">
+                <label>University Name:</label>
+                <select id="ugUniversityName">
+                  <option disabled selected>Select University</option>
+                  <option>Uka Tarsadia University</option>
+                  <option>Gujarat University</option>
+                  <option>Parul University</option>
+                  <option>Gujarat Technological University</option>
+                  <option>Nirma University</option>
+                  <option>GlS University</option>
+                  <option>Veer Narmad South Gujarat University</option>
+                </select>
+              </div>
+
+              <div class="input-field">
+                <label>CGPA Obtained:</label>
+                <input type="number" id="ugCgpa" placeholder="Enter CGPA"  />
+              </div>
+            </div>
+          </div>
+          <label class="change" style="color: rgb(177, 96, 96);">Are you currently pursuing a postgraduate degree Or have Degree ?</label><br>
+          <input id="noPg" type="radio" name="pgStatus" value="no">
+          <label for="noPg" class="change">No</label>
+          <input id="yesPg" type="radio" name="pgStatus" value="yes">
+          <label for="yesPg" class="change">Yes</label><br/>
           
-          
+          <div class="education2" style="display: none;">
+            <span class="title">Post Graduate</span>
 
+            <div class="fields">
+              <div class="input-field">
+                <label>Course Name:</label>
+                <select id="pgCourseName">
+                  <option disabled selected>Select Course</option>
+                  <option>MCA</option>
+                  <option>MSc IT</option>
+                  <option>MSc CS</option>
+                  <option>ME CE</option>
+                  <option>ME IT</option>
+                  <option>MSc SE</option>
+                </select>
+              </div>
 
-          const fileInput = document.getElementById("resume");
-          const file = fileInput.files[0];
-          var reader = new FileReader();
-        
-           reader.onload = function(event) {
-           const resumeData = reader.result.split(',')[1];
-             console.log("file data is",resumeData);
-             
-                const formData = {
-        firstName: document.getElementById("fname").value,
-        lastName: document.getElementById("lname").value,
-        selectedRecordId: document.getElementById("recordDropdown").value,
-        email: localStorage.getItem("emailId"),
-        resume: resumeData,
-        fileName: file.name
-    };
-           console.log("Form data:", formData);
+              <div class="input-field">
+                <label>Course Duration:</label>
+                <input type="date" id="pgStartDate" placeholder="Enter start date"  />
+                <input type="date" id="pgEndDate" placeholder="Enter end date"  />
+              </div>
+
+              <div class="input-field">
+                <label>Course Type:</label>
+                <select id="pgCourseType" >
+                  <option disabled selected>Select Course Type</option>
+                  <option>Full Time</option>
+                  <option>Part Time</option>
+                </select>
+                <label>Specialization Name:</label>
+                <select id="pgSpecialization" >
+                  <option disabled selected>Select Specialization</option>
+                  <option>Computer Science</option>
+                  <option>Artificial Intelligence (AI)</option>
+                  <option>Information Technology</option>
+                  <option>Cybersecurity</option>
+                  <option>Software Engineering</option>
+                  <option>Computer Networking</option>
+                  <option>Computer Graphics and Visualization</option>
+                  <option>Cloud Computing</option>
+                  <option>Human-Computer Interaction (HCI):</option>
+                </select>
+              </div>
+
+              <div class="input-field">
+                <label>Institute Name:</label>
+                <select id="pgInstituteName">
+                  <option disabled selected>Select Institute</option>
+                  <option disabled selected>Select Institute</option>
+                  <option>Shrimad Rajchandra Institute of Management and Computer Application, Bardoli</option>
+                  <option>P.P. Savani University, Surat</option>
+                  <option>Sarvajanik College of Engineering and Technology - [SCET], Surat</option>
+                  <option>Vidhyadeep University, Surat</option>
+                  <option>Chhotubhai Gopalbhai Patel Institute of Technology - [CGPIT], Bardoli</option>
+                  <option>Bhagwan Mahavir College of Management - [BMCM], Surat</option>
+                  <option>Veer Narmad South Gujarat University - [VNSGU], Surat</option>
+                  <option>Bhagwan Mahavir Education Foundation - [BMEF], Surat</option>
+                  <option>Vidyabharti Trust College Of Master in computer Application - [VBTMCA], Surat</option>
+                  <option>Bhagwan Mahavir University - [BMU], Surat</option>
+                  <option>Auro University, Surat</option>
+                </select>
+              </div>
+              <div class="input-field">
+                <label>University Name:</label>
+                <select id="pgUniversityName">
+                  <option disabled selected>Select University</option>
+                  <option>Uka Tarsadia University</option>
+                  <option>Gujarat University</option>
+                  <option>Parul University</option>
+                  <option>Gujarat Technological University</option>
+                  <option>Nirma University</option>
+                  <option>GlS University</option>
+                  <option>Veer Narmad South Gujarat University</option>
+                </select>
+              </div>
+
+              <div class="input-field">
+                <label>CGPA Obtained:</label>
+                <input type="number" id="pgCgpa" placeholder="Enter CGPA"  />
+              </div>
+            </div>
+          </div>
+         
+
+          <div class="school">
+            <span class="title">School Qualification</span>
+            <div class="set">
+            <div>
+              <span class="x-grade" style="font-size: 14px;color:rgb(177, 96, 96)">X Grade</span><br>
+  
+              <div class="field leftedu">
+                <div class="input-field">
+                  <label>Board of Education:</label>
+                  <select id="secBoard">
+                    <option disabled selected>Select Board</option>
+                    <option>GSEB</option>
+                    <option>CBSE</option>
+                    <option>ICSE</option>
+                    <option>GSHSEB</option>
+                    <option>MSBSHSE</option>
+                    <option>TNBSE</option>
+                    <option>UPMSP</option>
+                    <option>KSEB</option>
+                    <option>WBBSE</option>
+                  </select>
+                </div>
+  
+                <div class="input-field">
+                  <label>Marks:</label>
+                  <input type="number" id="secMarks" placeholder="Enter Marks"  />
+                </div>
+              </div>
+            </div>
+            <div>
+              <span class="xii-grade" style="font-size: 14px;color:rgb(177, 96, 96)">XII Grade</span>
+              <div class="field rightedu">
+                <div class="input-field">
+                  <label>Board of Education:</label>
+                  <select id="highBoard">
+                    <option disabled selected>Select Board</option>
+                    <option>GSEB</option>
+                    <option>CBSE</option>
+                    <option>ICSE</option>
+                    <option>GSHSEB</option>
+                    <option>MSBSHSE</option>
+                    <option>TNBSE</option>
+                    <option>UPMSP</option>
+                    <option>KSEB</option>
+                    <option>WBBSE</option>
+                  </select>
+                </div>
+  
+                <div class="input-field">
+                  <label>Marks:</label>
+                  <input type="number" id="highMarks" placeholder="Enter Marks"  />
+                </div>
+              </div>
+            </div>
             
-        
 
-   
-  const accessToken = "00D5g00000LOawI!ARsAQIfFPztJfmcnG0K10QmZNESv41sfuJVZ9RXQ3QEd1g6cUuDxVnxj6HS4BYtF_nddPPFMHEpGrwVDs1r5Is5k6jdSdo9X";
+          </div>
+            <div class="buttons">
+              <div class="backBtn" data-prv="second">
+                <i class="arrow left"></i>
+                <span class="btnText">Back</span>
+              </div>
 
-    // Send the formData object as JSON to the server
-    fetch("https://kriittechnologies2-dev-ed.develop.my.salesforce.com/services/apexrest/submitCandidateData", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${accessToken}`
-        },
-        body: JSON.stringify(formData)
-    })
-    .then(response => {
-        // Handle response
-      alert("Form Data Submitted Successfully");
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+              <button class="nextBtn" data-next="four">
+                <span class="btnText">Next</span>
+                <i class="arrow right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
 
-             
-};
-          reader.readAsDataURL(file);
+        <div class="form four" >
+          <div clas="declaration">
+            <span class="title">Declaration and Other Details</span>
             
+            <div class="field">
+              <label style="color: rgb(177, 96, 96);font-size: 13px;">Do you have any break in studies ?</label><br/>
+                
+                  <input id="no" type="radio" name="choice" value="NO">
+                  <label for="no" style="font-size: 14px;font-weight: 500;color: #2e2e2e;">No</label>
+                  <input id="yes" type="radio" name="choice" value="YES">
+                  <label for="yes" style="font-size: 14px;font-weight: 500;color: #2e2e2e;">Yes</label><br>
+              <div class="input-field">
+                
+                  </div>
+                <div class="input-field" id="breakReason" style="display: none;">
+                  <label>Mention Reason:</label>
+                  <input type="text" id="reason" placeholder="Enter Reason..."/>
+                </div>
+                <label style="color: rgb(177, 96, 96);font-size: 13px;">Do You Have any Pending Backlog/KT currently ?</label><br/>
+                <input id="no2" type="radio" name="choice1" value="NO">
+                <label for="no2" style="font-size: 14px;font-weight: 500;color: #2e2e2e;">No</label>
+                <input id="yes1" type="radio" name="choice1" value="YES">
+                <label for="yes1" style="font-size: 14px;font-weight: 500;color: #2e2e2e;">Yes</label><br>
+                <div class="input-field">
+                  
+                  
 
-          });
-
-      
-      function populateDropdown() {
-            fetch('https://kriittechnologies2-dev-ed.develop.my.salesforce.com/services/apexrest/submitCandidateData', {
-                method: 'GET',
-                headers: {
-                    'Authorization': 'Bearer 00D5g00000LOawI!ARsAQIfFPztJfmcnG0K10QmZNESv41sfuJVZ9RXQ3QEd1g6cUuDxVnxj6HS4BYtF_nddPPFMHEpGrwVDs1r5Is5k6jdSdo9X'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                const dropdown = document.getElementById('recordDropdown');
-                data.forEach(record => {
+                </div>
+                <div class="input-field" id="ktBacklog" style="display: none;">
+                  <label>KT/Backlog:<label>
+                  <select id="ktBacklog">
+                    <option disabled selected>Select KT/Backlog</option>
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>More then 3</option>
+                  </select>
+                </div>
+                <label style="color: rgb(177, 96, 96);font-size: 13px;">Language You can Speak:<label><br>
+                  <input type="checkbox" id="lan1" name="vehicle1" value="English">
+                  <label for="vehicle1" style="color: black;">English</label>
+                  <input type="checkbox" id="lan2" name="vehicle2" value="Hindi">
+                  <label for="vehicle2" style="color: black;"> Hindi</label>
+                  <input type="checkbox" id="lan3" name="vehicle3" value="Gujarati">
+                  <label for="vehicle3" style="color: black;"> Gujarati</label><br><br>
+                <div class="input-field">
                     
-                  if(record.Status__c=="Open - Approved"){
-                      const option = document.createElement('option');
-                      option.value = record.Id;
-                      option.textContent = record.Name;
-                      dropdown.appendChild(option);
-                      console.log("Valid Status is ",record.Status__c);
-                  }else{
-                    console.log("Not Valid for Post");
-                  }
-                                 
-                });
-              console.log("Retrived Data",data);
-              console.log();
-            })
-            .catch(error => {
-                console.error('Error fetching data from Salesforce:', error);
-            });
-        }
+                    
+                  </div>
+    
+            </div>
+          </div>
 
-        // Call the function to populate the dropdown when the page loads
-        populateDropdown();
-//       function sanitizeBase64(data) {
-//     // Regular expression to match non-base64 characters
-//     const regex = /[^A-Za-z0-9+/=]/g;
-//     // Remove non-base64 characters from the data
-//     return data.replace(regex, '');
-// }
-      //  const formData = new FormData(this);
-          //  const data = {};
-          //  formData.forEach((value, key) => {
-          //    data[key] = value;
-          //  });
-          // const dropdown = document.getElementById("recordDropdown");
-          // const selectedRecordId = dropdown.options[dropdown.selectedIndex].value;
-          // data["selectedRecordId"] = selectedRecordId;
-          // data["email"]=localStorage.getItem("emailId");
-          // const resumeFileInput = document.getElementById("resume");
-          // const resumeFile = resumeFileInput.files[0];
-          // data["resume"]=resumeFile;
+          <div clas="file">
+            <span class="title">Upload Resume/CV</span>
+            <div class="field">
+
+              <div class="input-field">
+            
+              <label>Resume/CV:<label>
+                <input type="file" placeholder="Select a file" id="resume" class="inputfile" accept=".pdf, .doc, .docx"/>
+                </div>
+
+          <label style="font-size: 10px;">Please ensure file format is of the following type.pdf,.doc,.docx(max 500kb) </label><br><br>
+
+              </div>
+              <div class="input-field">
+              <label for="linkedin" style="color: rgb(177, 96, 96);font-size: 13px;">LinkedIn Profile:</label>
+  <input type="text" id="linkedin" name="linkedin" placeholder="LinkedIn profile URL"><br>
+  </div>
+  <div class="input-field">
+  <label for="github" style="color: rgb(177, 96, 96);font-size: 13px;">GitHub Profile:</label>
+  <input type="text" id="github" name="github" placeholder="GitHub profile URL"><br>
+  </div>
+              <div class="buttons">
+              <div class="backBtn" data-prv="third">
+              <i class="arrow left"></i>
+              <span class="btnText">Back</span>
+              </div>
+
+            <button class="sumbit">
+              <span class="btnText">Submit</span>
+              
+            </button>
+          </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+    <script src="homescript.js">
+      
     </script>
   </body>
 </html>

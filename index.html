@@ -40,9 +40,24 @@
      let captcha = false;
       function beforesubmit(event) {
         if (captcha) {
-             document.getElementById("registrationForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent the default form submission
-
+             let response = grecaptcha.getResponse();
+          if (response.length === 0) {
+          // If the response is empty, reCAPTCHA was not completed
+          alert("Please complete the reCAPTCHA challenge.");
+        } else {
+          // If the response is not empty, proceed with form submission
+          submitForm();
+        }
+        } else {
+          alert("Please Check the reCAPTCHA Box to Submit the Lead !");
+          event.preventDefault(); //this method stop the submission of the form
+        }
+      }
+      function captchasuccess() {
+        captcha = true;
+      }
+ 
+function submitForm() {
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
 
@@ -88,15 +103,7 @@
               console.error("There was a problem with the request:", error);
               alert("There was a problem submitting the form data.");
             });
-        });
-        } else {
-          alert("Please Check the reCAPTCHA Box to Submit the Lead !");
-          event.preventDefault(); //this method stop the submission of the form
-        }
-      }
-      function captchasuccess() {
-        captcha = true;
-      }
+  }
    
         
       

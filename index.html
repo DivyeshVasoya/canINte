@@ -36,79 +36,69 @@
         Already have an account ? <a href="/canINte/login.html">Login</a>
       </div>
     </form>
-<script>
-     let captcha = false;
+    <script>
+      let captcha = false;
       function beforesubmit(event) {
         if (captcha) {
-             let response = grecaptcha.getResponse();
+          let response = grecaptcha.getResponse();
           if (response.length === 0) {
-          // If the response is empty, reCAPTCHA was not completed
-          alert("Please complete the reCAPTCHA challenge.");
-        } else {
-          // If the response is not empty, proceed with form submission
-          submitForm();
-        }
+            // If the response is empty, reCAPTCHA was not completed
+            alert("Please complete the reCAPTCHA challenge.");
+            event.preventDefault(); // Stop form submission
+          } else {
+            // If the response is not empty, proceed with form submission
+            submitForm();
+          }
         } else {
           alert("Please Check the reCAPTCHA Box to Submit the Lead !");
-          event.preventDefault(); //this method stop the submission of the form
+          event.preventDefault(); // Stop form submission
         }
       }
       function captchasuccess() {
         captcha = true;
       }
- 
-function submitForm() {
+
+      function submitForm() {
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
 
         var data = {
-            email: email,
-            password: password
+          email: email,
+          password: password
         };
-        console.log("data is",data);
-        // Get form data
-        var formData = new FormData(this);
-        
-        // Convert form data to JSON object
-        var jsonObject = {};
-        formData.forEach(function(value, key){
-            jsonObject[key] = value;
-        });
+        console.log("data is", data);
+
         const accessToken =
-            "00D5g00000LOawI!ARsAQKNgk_kEi4HE0qx5NIb4FJCn5nbsSQHurBF6u3hdPH_tR9Uc_nrR14VJY32UYTuTj6Wpi8BGFOFGS.or2DoKmdRh9yo7"; // Replace with your access token
+          "00D5g00000LOawI!ARsAQKNgk_kEi4HE0qx5NIb4FJCn5nbsSQHurBF6u3hdPH_tR9Uc_nrR14VJY32UYTuTj6Wpi8BGFOFGS.or2DoKmdRh9yo7"; // Replace with your access token
 
-          fetch(
-            "https://kriittechnologies2-dev-ed.develop.my.salesforce.com/services/apexrest/getUserData",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${accessToken}`,
-              },
-              body: JSON.stringify(data),
-            }
-          )
-            .then((response) => {
-              // if (!response.ok) {
-              //   throw new Error("Network response was not ok");
-              // }
-              return response.text();
-            })
-            .then((result) => {
-              console.log("Form data submitted successfully:", result);
-              alert("Form data submitted successfully!");
-                window.location.href = "/canINte/login.html";
-            })
-            .catch((error) => {
-              console.error("There was a problem with the request:", error);
-              alert("There was a problem submitting the form data.");
-            });
-  }
-   
-        
-      
-</script>
-      <script src="https://www.google.com/recaptcha/api.js"></script>
-
-</body>
+        fetch(
+          "https://kriittechnologies2-dev-ed.develop.my.salesforce.com/services/apexrest/getUserData",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+            body: JSON.stringify(data),
+          }
+        )
+          .then((response) => {
+            // if (!response.ok) {
+            //   throw new Error("Network response was not ok");
+            // }
+            return response.text();
+          })
+          .then((result) => {
+            console.log("Form data submitted successfully:", result);
+            alert("Form data submitted successfully!");
+            window.location.href = "/canINte/login.html";
+          })
+          .catch((error) => {
+            console.error("There was a problem with the request:", error);
+            alert("There was a problem submitting the form data.");
+          });
+      }
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+  </body>
 </html>

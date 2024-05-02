@@ -237,8 +237,8 @@ document
         github: document.getElementById("github").value,
 
         //email: localStorage.getItem("emailId"),
-        resume: resumeData,
-        fileName: file.name,
+        //resume: resumeData,
+       // fileName: file.name,
       };
       console.log("Form data:", formData);
 

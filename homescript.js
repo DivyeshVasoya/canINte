@@ -243,6 +243,7 @@ document
         ugSpecilization: document.getElementById("ugSpecilization").value,
         ugInstituteName: document.getElementById("ugInstituteName").value,
         ugUniversityName: document.getElementById("ugUniversityName").value,
+        ugCgpa: document.getElementById("ugCgpa").value,
         pgStatus: pgStatus,
         pgCourseName: document.getElementById("pgCourseName").value,
         pgStartDate: document.getElementById("pgStartDate").value,

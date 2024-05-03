@@ -187,6 +187,33 @@ document
           break;
         }
       }
+      var lan1 = document.getElementsByName("vehicle1");
+      var Lan1;
+      for (i = 0; i < lan1.length; i++) {
+        if (lan1[i].checked) {
+          Lan1 = lan1[i].value;
+        } else {
+          Lan1 = null;
+        }
+      }
+      var lan2 = document.getElementsByName("vehicle2");
+      var Lan2;
+      for (i = 0; i < lan2.length; i++) {
+        if (lan2[i].checked) {
+          Lan2 = lan2[i].value;
+        } else {
+          Lan2 = null;
+        }
+      }
+      var lan3 = document.getElementsByName("vehicle3");
+      var Lan3;
+      for (i = 0; i < lan3.length; i++) {
+        if (lan3[i].checked) {
+          Lan3 = lan3[i].value;
+        } else {
+          Lan3 = null;
+        }
+      }
 
       const formData = {
         salutation: document.getElementById("salutation").value,
@@ -230,9 +257,9 @@ document
         reason: document.getElementById("reason").value,
         choice1: choice1,
         ktBacklog: document.getElementById("ktBacklog").value,
-        lan1: document.getElementById("lan1").value,
-        lan2: document.getElementById("lan2").value,
-        lan3: document.getElementById("lan3").value,
+        lan1: Lan1,
+        lan2: Lan2,
+        lan3: Lan3,
         linkedin: document.getElementById("linkedin").value,
         github: document.getElementById("github").value,
 

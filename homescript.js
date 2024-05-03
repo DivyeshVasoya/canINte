@@ -126,19 +126,7 @@ document.querySelectorAll("input[type=radio][name=choice]").forEach((input) => {
   });
 });
 
-// Function to toggle display of "KT/Backlog" select dropdown
-document
-  .querySelectorAll("input[type=radio][name=choice1]")
-  .forEach((input) => {
-    input.addEventListener("change", function () {
-      const ktBacklog = document.getElementById("ktBacklog");
-      if (this.value === "YES") {
-        ktBacklog.style.display = "block";
-      } else {
-        ktBacklog.style.display = "none";
-      }
-    });
-  });
+
 document.querySelectorAll('input[name="pgStatus"]').forEach((input) => {
   input.addEventListener("change", function () {
     const education2 = document.querySelector(".education2");

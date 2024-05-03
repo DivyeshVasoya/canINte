@@ -217,7 +217,7 @@ document
         state: document.getElementById("state").value,
         city: document.getElementById("city").value,
         pincode: document.getElementById("pincode").value,
-        email: document.getElementById("state").value,
+        email: document.getElementById("email").value,
         altEmail: document.getElementById("altEmail").value,
         phone: document.getElementById("phone").value,
         altPhone: document.getElementById("altPhone").value,

@@ -237,6 +237,8 @@ document
         highQualification: document.getElementById("highQualification").value,
         yearOfPassing: document.getElementById("yearOfPassing").value,
         ugCourseName: document.getElementById("ugCourseName").value,
+        ugStartDate: document.getElementById("ugStartDate").value,
+        ugEndDate: document.getElementById("ugEndDate").value,
         ugCourseType: document.getElementById("ugCourseType").value,
         ugSpecilization: document.getElementById("ugSpecilization").value,
         ugInstituteName: document.getElementById("ugInstituteName").value,

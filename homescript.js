@@ -118,7 +118,7 @@ function updateStates() {
 document.querySelectorAll("input[type=radio][name=choice]").forEach((input) => {
   input.addEventListener("change", function () {
     const breakReason = document.getElementById("breakReason");
-    if (this.value === "YES") {
+    if (this.value === "true") {
       breakReason.style.display = "block";
     } else {
       breakReason.style.display = "none";
@@ -130,7 +130,7 @@ document.querySelectorAll("input[type=radio][name=choice]").forEach((input) => {
 document.querySelectorAll('input[name="pgStatus"]').forEach((input) => {
   input.addEventListener("change", function () {
     const education2 = document.querySelector(".education2");
-    if (this.value === "yes") {
+    if (this.value === "true") {
       education2.style.display = "block";
     } else {
       education2.style.display = "none";
